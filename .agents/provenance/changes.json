@@ -1,0 +1,377 @@
+[
+  {
+    "path": ".agents/.gitattributes",
+    "change": "modified",
+    "bytes": 224
+  },
+  {
+    "path": ".agents/AGENTS.md",
+    "change": "modified",
+    "bytes": 660
+  },
+  {
+    "path": ".agents/AGENT_CONTEXT.md",
+    "change": "added",
+    "bytes": 10922
+  },
+  {
+    "path": ".agents/AGENT_RULES.md",
+    "change": "modified",
+    "bytes": 4751
+  },
+  {
+    "path": ".agents/ARCHITECTURE.md",
+    "change": "modified",
+    "bytes": 1992
+  },
+  {
+    "path": ".agents/CAPABILITIES.md",
+    "change": "added",
+    "bytes": 3452
+  },
+  {
+    "path": ".agents/CHANGELOG.md",
+    "change": "added",
+    "bytes": 2393
+  },
+  {
+    "path": ".agents/ISSUES.md",
+    "change": "modified",
+    "bytes": 748
+  },
+  {
+    "path": ".agents/PROVENANCE.md",
+    "change": "added",
+    "bytes": 1768
+  },
+  {
+    "path": ".agents/README.md",
+    "change": "added",
+    "bytes": 6255
+  },
+  {
+    "path": ".agents/ROADMAP.md",
+    "change": "modified",
+    "bytes": 262
+  },
+  {
+    "path": ".agents/SOURCES.md",
+    "change": "added",
+    "bytes": 1309
+  },
+  {
+    "path": ".agents/VALIDATION.md",
+    "change": "added",
+    "bytes": 3227
+  },
+  {
+    "path": ".agents/adapters/claude-code/README.md",
+    "change": "added",
+    "bytes": 574
+  },
+  {
+    "path": ".agents/adapters/claude-code/super-code/SKILL.md",
+    "change": "added",
+    "bytes": 662
+  },
+  {
+    "path": ".agents/adapters/claude-code/think-like-fable/SKILL.md",
+    "change": "added",
+    "bytes": 680
+  },
+  {
+    "path": ".agents/provenance/input-manifest.json",
+    "change": "added",
+    "bytes": 15985
+  },
+  {
+    "path": ".agents/skills/SKILLS.md",
+    "change": "modified",
+    "bytes": 1738
+  },
+  {
+    "path": ".agents/skills/super-code/SKILL.md",
+    "change": "modified",
+    "bytes": 5694
+  },
+  {
+    "path": ".agents/skills/super-code/agents/openai.yaml",
+    "change": "added",
+    "bytes": 126
+  },
+  {
+    "path": ".agents/skills/super-code/references/brainstorming/brainstorming.md",
+    "change": "modified",
+    "bytes": 2659
+  },
+  {
+    "path": ".agents/skills/super-code/references/brainstorming/scripts/start-server.sh",
+    "change": "executable-mode-restored",
+    "bytes": 6908
+  },
+  {
+    "path": ".agents/skills/super-code/references/brainstorming/scripts/stop-server.sh",
+    "change": "executable-mode-restored",
+    "bytes": 3263
+  },
+  {
+    "path": ".agents/skills/super-code/references/brainstorming/spec-document-reviewer-prompt.md",
+    "change": "modified",
+    "bytes": 2086
+  },
+  {
+    "path": ".agents/skills/super-code/references/brainstorming/visual-companion.md",
+    "change": "modified",
+    "bytes": 13423
+  },
+  {
+    "path": ".agents/skills/super-code/references/dispatching-parallel-agents/dispatching-parallel-agents.md",
+    "change": "modified",
+    "bytes": 6983
+  },
+  {
+    "path": ".agents/skills/super-code/references/executing-plans/executing-plans.md",
+    "change": "modified",
+    "bytes": 2226
+  },
+  {
+    "path": ".agents/skills/super-code/references/finishing-a-development-branch/finishing-a-development-branch.md",
+    "change": "modified",
+    "bytes": 2377
+  },
+  {
+    "path": ".agents/skills/super-code/references/receiving-code-review/receiving-code-review.md",
+    "change": "modified",
+    "bytes": 6721
+  },
+  {
+    "path": ".agents/skills/super-code/references/requesting-code-review/code-reviewer.md",
+    "change": "modified",
+    "bytes": 5552
+  },
+  {
+    "path": ".agents/skills/super-code/references/requesting-code-review/requesting-code-review.md",
+    "change": "modified",
+    "bytes": 1942
+  },
+  {
+    "path": ".agents/skills/super-code/references/subagent-driven-development/implementer-prompt.md",
+    "change": "modified",
+    "bytes": 6266
+  },
+  {
+    "path": ".agents/skills/super-code/references/subagent-driven-development/scripts/review-package",
+    "change": "modified",
+    "bytes": 657
+  },
+  {
+    "path": ".agents/skills/super-code/references/subagent-driven-development/scripts/sdd-workspace",
+    "change": "modified",
+    "bytes": 652
+  },
+  {
+    "path": ".agents/skills/super-code/references/subagent-driven-development/scripts/task-brief",
+    "change": "modified",
+    "bytes": 653
+  },
+  {
+    "path": ".agents/skills/super-code/references/subagent-driven-development/subagent-driven-development.md",
+    "change": "modified",
+    "bytes": 23027
+  },
+  {
+    "path": ".agents/skills/super-code/references/subagent-driven-development/task-reviewer-prompt.md",
+    "change": "modified",
+    "bytes": 8663
+  },
+  {
+    "path": ".agents/skills/super-code/references/systematic-debugging/CREATION-LOG.md",
+    "change": "modified",
+    "bytes": 4606
+  },
+  {
+    "path": ".agents/skills/super-code/references/systematic-debugging/condition-based-waiting.md",
+    "change": "modified",
+    "bytes": 3855
+  },
+  {
+    "path": ".agents/skills/super-code/references/systematic-debugging/defense-in-depth.md",
+    "change": "modified",
+    "bytes": 3989
+  },
+  {
+    "path": ".agents/skills/super-code/references/systematic-debugging/find-polluter.sh",
+    "change": "executable-mode-restored",
+    "bytes": 1528
+  },
+  {
+    "path": ".agents/skills/super-code/references/systematic-debugging/root-cause-tracing.md",
+    "change": "modified",
+    "bytes": 5655
+  },
+  {
+    "path": ".agents/skills/super-code/references/systematic-debugging/systematic-debugging.md",
+    "change": "modified",
+    "bytes": 10224
+  },
+  {
+    "path": ".agents/skills/super-code/references/systematic-debugging/test-academic.md",
+    "change": "modified",
+    "bytes": 1002
+  },
+  {
+    "path": ".agents/skills/super-code/references/systematic-debugging/test-pressure-1.md",
+    "change": "modified",
+    "bytes": 2249
+  },
+  {
+    "path": ".agents/skills/super-code/references/systematic-debugging/test-pressure-2.md",
+    "change": "modified",
+    "bytes": 2632
+  },
+  {
+    "path": ".agents/skills/super-code/references/systematic-debugging/test-pressure-3.md",
+    "change": "modified",
+    "bytes": 3041
+  },
+  {
+    "path": ".agents/skills/super-code/references/test-driven-development/test-driven-development.md",
+    "change": "modified",
+    "bytes": 10708
+  },
+  {
+    "path": ".agents/skills/super-code/references/test-driven-development/testing-anti-patterns.md",
+    "change": "modified",
+    "bytes": 8590
+  },
+  {
+    "path": ".agents/skills/super-code/references/using-git-worktrees/using-git-worktrees.md",
+    "change": "modified",
+    "bytes": 2464
+  },
+  {
+    "path": ".agents/skills/super-code/references/using-superpowers/references/antigravity-tools.md",
+    "change": "modified",
+    "bytes": 1888
+  },
+  {
+    "path": ".agents/skills/super-code/references/using-superpowers/references/codex-tools.md",
+    "change": "modified",
+    "bytes": 1877
+  },
+  {
+    "path": ".agents/skills/super-code/references/using-superpowers/references/pi-tools.md",
+    "change": "modified",
+    "bytes": 1591
+  },
+  {
+    "path": ".agents/skills/super-code/references/using-superpowers/using-superpowers.md",
+    "change": "modified",
+    "bytes": 1045
+  },
+  {
+    "path": ".agents/skills/super-code/references/verification-before-completion/verification-before-completion.md",
+    "change": "modified",
+    "bytes": 4540
+  },
+  {
+    "path": ".agents/skills/super-code/references/writing-plans/plan-document-reviewer-prompt.md",
+    "change": "modified",
+    "bytes": 2052
+  },
+  {
+    "path": ".agents/skills/super-code/references/writing-plans/writing-plans.md",
+    "change": "modified",
+    "bytes": 2757
+  },
+  {
+    "path": ".agents/skills/super-code/references/writing-skills/anthropic-best-practices.md",
+    "change": "modified",
+    "bytes": 46546
+  },
+  {
+    "path": ".agents/skills/super-code/references/writing-skills/examples/CLAUDE_MD_TESTING.md",
+    "change": "modified",
+    "bytes": 5772
+  },
+  {
+    "path": ".agents/skills/super-code/references/writing-skills/persuasion-principles.md",
+    "change": "modified",
+    "bytes": 6250
+  },
+  {
+    "path": ".agents/skills/super-code/references/writing-skills/testing-skills-with-subagents.md",
+    "change": "modified",
+    "bytes": 12907
+  },
+  {
+    "path": ".agents/skills/super-code/references/writing-skills/writing-skills.md",
+    "change": "modified",
+    "bytes": 27774
+  },
+  {
+    "path": ".agents/skills/think-like-fable/SKILL.md",
+    "change": "modified",
+    "bytes": 13697
+  },
+  {
+    "path": ".agents/skills/think-like-fable/agents/openai.yaml",
+    "change": "added",
+    "bytes": 126
+  },
+  {
+    "path": ".agents/skills/think-like-fable/references/twincat-rules.md",
+    "change": "modified",
+    "bytes": 4656
+  },
+  {
+    "path": ".agents/tests/BEHAVIORAL_EVALS.md",
+    "change": "added",
+    "bytes": 3379
+  },
+  {
+    "path": ".agents/tests/TEST_RESULTS.txt",
+    "change": "added",
+    "bytes": 8160
+  },
+  {
+    "path": ".agents/tests/static-checks.json",
+    "change": "added",
+    "bytes": 1649
+  },
+  {
+    "path": ".agents/tests/test_contract.py",
+    "change": "added",
+    "bytes": 4726
+  },
+  {
+    "path": ".agents/tests/test_helpers.py",
+    "change": "added",
+    "bytes": 19274
+  },
+  {
+    "path": ".agents/tools/README.md",
+    "change": "added",
+    "bytes": 7268
+  },
+  {
+    "path": ".agents/tools/export_context.py",
+    "change": "added",
+    "bytes": 4595
+  },
+  {
+    "path": ".agents/tools/sdd.py",
+    "change": "added",
+    "bytes": 18052
+  },
+  {
+    "path": "AGENTS.md",
+    "change": "added",
+    "bytes": 1185
+  },
+  {
+    "path": "CLAUDE.md",
+    "change": "added",
+    "bytes": 270
+  }
+]

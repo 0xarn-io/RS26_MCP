@@ -1,0 +1,9 @@
+# Text and executable entry points use LF across platforms.
+* text=auto eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.js text eol=lf
+*.cjs text eol=lf
+sdd-workspace text eol=lf
+task-brief text eol=lf
+review-package text eol=lf

@@ -1,0 +1,59 @@
+{
+  "syntax": [
+    {
+      "path": ".agents/skills/super-code/references/brainstorming/scripts/helper.js",
+      "command": "node --check",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "path": ".agents/skills/super-code/references/brainstorming/scripts/server.cjs",
+      "command": "node --check",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "path": ".agents/skills/super-code/references/brainstorming/scripts/start-server.sh",
+      "command": "bash -n",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "path": ".agents/skills/super-code/references/brainstorming/scripts/stop-server.sh",
+      "command": "bash -n",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "path": ".agents/skills/super-code/references/subagent-driven-development/scripts/review-package",
+      "command": "bash -n",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "path": ".agents/skills/super-code/references/subagent-driven-development/scripts/sdd-workspace",
+      "command": "bash -n",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "path": ".agents/skills/super-code/references/subagent-driven-development/scripts/task-brief",
+      "command": "bash -n",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "path": ".agents/skills/super-code/references/systematic-debugging/find-polluter.sh",
+      "command": "bash -n",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "path": ".agents/skills/super-code/references/writing-skills/render-graphs.js",
+      "command": "node --check",
+      "returncode": 0,
+      "stderr": ""
+    }
+  ],
+  "broken_links": []
+}

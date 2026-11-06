@@ -1,0 +1,3 @@
+# Optional host adapter; the shared prose activation policy remains authoritative.
+policy:
+  allow_implicit_invocation: false

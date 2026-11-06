@@ -1,0 +1,98 @@
+Executed validation groups; all 53 distinct tests passed.
+
+=== GROUP 1 ===
+test_active_router_reference_paths_exist (test_contract.ContractTests.test_active_router_reference_paths_exist) ... ok
+test_optional_host_invocation_controls_are_present (test_contract.ContractTests.test_optional_host_invocation_controls_are_present) ... ok
+test_shared_skill_frontmatter_is_portable (test_contract.ContractTests.test_shared_skill_frontmatter_is_portable) ... ok
+test_prebuilt_context_matches_canonical_sources (test_helpers.ContextTests.test_prebuilt_context_matches_canonical_sources) ... ok
+test_bad_manifest_is_not_adopted (test_helpers.HelperTests.test_bad_manifest_is_not_adopted) ... ok
+test_complete_rejects_empty_evidence (test_helpers.HelperTests.test_complete_rejects_empty_evidence) ... ok
+test_dirty_tracked_file_invalidates_receipt (test_helpers.HelperTests.test_dirty_tracked_file_invalidates_receipt) ... ok
+test_explicit_output_is_idempotent_and_nonclobbering (test_helpers.HelperTests.test_explicit_output_is_idempotent_and_nonclobbering) ... ok
+test_invocation_from_subdirectory (test_helpers.HelperTests.test_invocation_from_subdirectory) ... ok
+test_missing_evidence_invalidates_receipt (test_helpers.HelperTests.test_missing_evidence_invalidates_receipt) ... ok
+test_mixed_heading_levels_fail (test_helpers.HelperTests.test_mixed_heading_levels_fail) ... ok
+test_review_package_covers_multiple_commits (test_helpers.HelperTests.test_review_package_covers_multiple_commits) ... ok
+test_tracked_state_is_not_hidden (test_helpers.HelperTests.test_tracked_state_is_not_hidden) ... ok
+test_workspace_lock_refuses_second_writer_and_status (test_helpers.HelperTests.test_workspace_lock_refuses_second_writer_and_status) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 18.396s
+
+OK
+
+=== GROUP 2 ===
+test_all_reference_docs_have_scope_or_historical_notice (test_contract.ContractTests.test_all_reference_docs_have_scope_or_historical_notice) ... ok
+test_python_helpers_parse_with_python39_grammar (test_contract.ContractTests.test_python_helpers_parse_with_python39_grammar) ... ok
+test_baseline_does_not_embed_skill_bodies (test_helpers.ContextTests.test_baseline_does_not_embed_skill_bodies) ... ok
+test_reference_requires_its_skill (test_helpers.ContextTests.test_reference_requires_its_skill) ... ok
+test_bash_wrappers_work_when_executable_bits_are_stripped (test_helpers.HelperTests.test_bash_wrappers_work_when_executable_bits_are_stripped) ... ok
+test_complete_rejects_old_head (test_helpers.HelperTests.test_complete_rejects_old_head) ... ok
+test_duplicate_task_numbers_fail_without_output (test_helpers.HelperTests.test_duplicate_task_numbers_fail_without_output) ... ok
+test_fenced_headings_are_not_tasks_and_footer_is_excluded (test_helpers.HelperTests.test_fenced_headings_are_not_tasks_and_footer_is_excluded) ... ok
+test_later_commit_requires_revalidation (test_helpers.HelperTests.test_later_commit_requires_revalidation) ... ok
+test_missing_output_parent_fails (test_helpers.HelperTests.test_missing_output_parent_fails) ... ok
+test_outside_repository_paths_fail (test_helpers.HelperTests.test_outside_repository_paths_fail) ... ok
+test_second_plan_same_task_number_is_isolated (test_helpers.HelperTests.test_second_plan_same_task_number_is_isolated) ... ok
+test_unclosed_fence_fails (test_helpers.HelperTests.test_unclosed_fence_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 17.884s
+
+OK
+
+=== GROUP 3 ===
+test_executable_entry_points_have_lf (test_contract.ContractTests.test_executable_entry_points_have_lf) ... ok
+test_review_package_calls_include_plan_identity (test_contract.ContractTests.test_review_package_calls_include_plan_identity) ... ok
+test_exporter_refuses_to_clobber_nongenerated_output (test_helpers.ContextTests.test_exporter_refuses_to_clobber_nongenerated_output) ... ok
+test_selected_skill_and_reference_are_embedded (test_helpers.ContextTests.test_selected_skill_and_reference_are_embedded) ... ok
+test_changed_evidence_invalidates_receipt (test_helpers.HelperTests.test_changed_evidence_invalidates_receipt) ... ok
+test_corrupt_receipt_fails_closed (test_helpers.HelperTests.test_corrupt_receipt_fails_closed) ... ok
+test_edited_plan_gets_new_workspace (test_helpers.HelperTests.test_edited_plan_gets_new_workspace) ... ok
+test_invalid_or_reversed_review_revisions_fail (test_helpers.HelperTests.test_invalid_or_reversed_review_revisions_fail) ... ok
+test_legacy_ledger_is_not_imported (test_helpers.HelperTests.test_legacy_ledger_is_not_imported) ... ok
+test_missing_plan_argument_is_an_error (test_helpers.HelperTests.test_missing_plan_argument_is_an_error) ... ok
+test_plan_and_git_metadata_cannot_be_output (test_helpers.HelperTests.test_plan_and_git_metadata_cannot_be_output) ... ok
+test_status_without_workspace_is_read_only (test_helpers.HelperTests.test_status_without_workspace_is_read_only) ... ok
+test_untracked_file_invalidates_receipt (test_helpers.HelperTests.test_untracked_file_invalidates_receipt) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 18.659s
+
+OK
+
+=== GROUP 4 ===
+test_no_original_activation_or_pull_conflict (test_contract.ContractTests.test_no_original_activation_or_pull_conflict) ... ok
+test_root_entry_point_and_claude_imports_share_sources (test_contract.ContractTests.test_root_entry_point_and_claude_imports_share_sources) ... ok
+test_generated_export_can_be_refreshed (test_helpers.ContextTests.test_generated_export_can_be_refreshed) ... ok
+test_unsafe_reference_is_rejected (test_helpers.ContextTests.test_unsafe_reference_is_rejected) ... ok
+test_complete_rejects_dirty_tree_without_changing_history (test_helpers.HelperTests.test_complete_rejects_dirty_tree_without_changing_history) ... ok
+test_default_brief_includes_global_constraints (test_helpers.HelperTests.test_default_brief_includes_global_constraints) ... ok
+test_evidence_path_traversal_fails_closed (test_helpers.HelperTests.test_evidence_path_traversal_fails_closed) ... ok
+test_invalid_task_numbers_fail (test_helpers.HelperTests.test_invalid_task_numbers_fail) ... ok
+test_mismatched_receipt_task_hash_fails_closed (test_helpers.HelperTests.test_mismatched_receipt_task_hash_fails_closed) ... ok
+test_missing_task_creates_no_output (test_helpers.HelperTests.test_missing_task_creates_no_output) ... ok
+test_receipt_validates_current_clean_head (test_helpers.HelperTests.test_receipt_validates_current_clean_head) ... ok
+test_symlinked_state_is_rejected (test_helpers.HelperTests.test_symlinked_state_is_rejected) ... ok
+test_workspace_is_stable_and_ignored (test_helpers.HelperTests.test_workspace_is_stable_and_ignored) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 20.079s
+
+OK
+
+=== FINAL CONTRACT RE-RUN AFTER WORDING CORRECTIONS ===
+test_active_router_reference_paths_exist (test_contract.ContractTests.test_active_router_reference_paths_exist) ... ok
+test_all_reference_docs_have_scope_or_historical_notice (test_contract.ContractTests.test_all_reference_docs_have_scope_or_historical_notice) ... ok
+test_executable_entry_points_have_lf (test_contract.ContractTests.test_executable_entry_points_have_lf) ... ok
+test_no_original_activation_or_pull_conflict (test_contract.ContractTests.test_no_original_activation_or_pull_conflict) ... ok
+test_optional_host_invocation_controls_are_present (test_contract.ContractTests.test_optional_host_invocation_controls_are_present) ... ok
+test_python_helpers_parse_with_python39_grammar (test_contract.ContractTests.test_python_helpers_parse_with_python39_grammar) ... ok
+test_review_package_calls_include_plan_identity (test_contract.ContractTests.test_review_package_calls_include_plan_identity) ... ok
+test_root_entry_point_and_claude_imports_share_sources (test_contract.ContractTests.test_root_entry_point_and_claude_imports_share_sources) ... ok
+test_shared_skill_frontmatter_is_portable (test_contract.ContractTests.test_shared_skill_frontmatter_is_portable) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.008s
+
+OK

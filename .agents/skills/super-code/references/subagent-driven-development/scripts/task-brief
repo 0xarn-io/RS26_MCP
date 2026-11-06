@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Optional POSIX wrapper. Native Windows: use .agents/tools/sdd.py directly.
+# Python 3.9+ and Git required. All arguments are forwarded without shell evaluation.
+set -euo pipefail
+script_dir=$(cd "$(dirname "$0")" && pwd)
+agents_dir=$(cd "$script_dir/../../../../.." && pwd)
+if [[ -n "${PYTHON:-}" ]]; then
+  interpreter=$PYTHON
+elif command -v python3 >/dev/null 2>&1; then
+  interpreter=python3
+elif command -v python >/dev/null 2>&1; then
+  interpreter=python
+else
+  echo "Python 3.9+ is required; use the Markdown/manual fallback if unavailable." >&2
+  exit 127
+fi
+exec "$interpreter" "$agents_dir/tools/sdd.py" task-brief "$@"
