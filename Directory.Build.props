@@ -1,0 +1,12 @@
+<Project>
+  <PropertyGroup>
+    <Version>1.0.0</Version>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Deterministic>true</Deterministic>
+    <PathMap>$(MSBuildThisFileDirectory)=/_/</PathMap>
+    <NuGetAudit>false</NuGetAudit>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/RobotStudioOffline.Core/RobotStudioOffline.Core.csproj" />
+    <Project Path="src/RobotStudioOffline.Addin/RobotStudioOffline.Addin.csproj" />
+    <Project Path="src/RobotStudioOffline.Mcp/RobotStudioOffline.Mcp.csproj" />
+    <Project Path="src/RobotStudioOffline.HeadlessRecorder/RobotStudioOffline.HeadlessRecorder.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/RobotStudioOffline.Tests/RobotStudioOffline.Tests.csproj" />
+    <Project Path="tests/RobotStudioOffline.Mcp.Tests/RobotStudioOffline.Mcp.Tests.csproj" />
+  </Folder>
+</Solution>

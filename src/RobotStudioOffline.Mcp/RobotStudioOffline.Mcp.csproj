@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RobotStudioDir Condition="'$(RobotStudioDir)' == ''">C:\Program Files (x86)\ABB\RobotStudio 2026</RobotStudioDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../RobotStudioOffline.Core/RobotStudioOffline.Core.csproj" />
+    <AssemblyMetadata Include="RobotStudioDir" Value="$(RobotStudioDir)" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- RobotStudio's subfolder discovery requires this basename to match OfflineStationBridge. -->
+<RobotStudioAddIn xmlns="urn:abb-robotics-robotstudio-addin" autoLoad="false">
+  <ApplicationId>local.RobotStudioOfflineBridge</ApplicationId>
+  <DisplayName>Offline Station Bridge</DisplayName>
+  <Description>Authenticated 127.0.0.1 development bridge. Ask owner permission before real-controller access.</Description>
+  <AddInType>General</AddInType>
+  <Assembly><FileName>RobotStudioOffline.Addin.dll</FileName></Assembly>
+  <MinimumHostVersion>26.1</MinimumHostVersion>
+  <Dependencies>Station</Dependencies>
+</RobotStudioAddIn>

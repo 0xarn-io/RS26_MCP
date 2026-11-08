@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <PlatformTarget>x64</PlatformTarget>
+    <RobotStudioDir Condition="'$(RobotStudioDir)' == ''">C:\Program Files (x86)\ABB\RobotStudio 2026</RobotStudioDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../RobotStudioOffline.Core/RobotStudioOffline.Core.csproj" />
+    <Reference Include="ABB.Robotics.RobotStudio"><HintPath>$(RobotStudioDir)\Bin\ABB.Robotics.RobotStudio.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="ABB.Robotics.RobotStudio.Stations"><HintPath>$(RobotStudioDir)\Bin\ABB.Robotics.RobotStudio.Stations.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="ABB.Robotics.RobotStudio.Stations.Forms"><HintPath>$(RobotStudioDir)\Bin\ABB.Robotics.RobotStudio.Stations.Forms.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="ABB.Robotics.Math"><HintPath>$(RobotStudioDir)\Bin\ABB.Robotics.Math.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="ABB.Robotics.Controllers.PC"><HintPath>$(RobotStudioDir)\Bin\ABB.Robotics.Controllers.PC.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="ABB.Robotics.RobotStudio.Controllers"><HintPath>$(RobotStudioDir)\Bin\ABB.Robotics.RobotStudio.Controllers.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="RobotStudio.Services.RobApi"><HintPath>$(RobotStudioDir)\Bin\RobotStudio.Services.RobApi.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="ABB.Robotics.RobotStudio.Environment"><HintPath>$(RobotStudioDir)\Bin\ABB.Robotics.RobotStudio.Environment.dll</HintPath><Private>false</Private></Reference>
+    <None Update="OfflineStationBridge.rsaddin" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <Target Name="CheckRobotStudioSdk" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(RobotStudioDir)\Bin\ABB.Robotics.RobotStudio.Stations.dll')" Text="RobotStudio 2026 SDK DLLs not found in $(RobotStudioDir)\Bin. Set RobotStudioDir." />
+  </Target>
+</Project>
