@@ -5,7 +5,10 @@ param(
     [Parameter(Mandatory)][string]$WorkObject,
     [Parameter(Mandatory)][string]$Target,
     [switch]$CheckGeometry,
-    [string]$OutputPath
+    [string]$OutputPath,
+    [switch]$CheckEngineering,
+    [string]$SafeMoveGeometryFile,
+    [switch]$CheckCell
 )
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
@@ -22,7 +25,10 @@ $client.DefaultRequestHeaders.Authorization = [System.Net.Http.Headers.Authentic
 $results = [ordered]@{ timestamp = [DateTimeOffset]::Now.ToString('o'); readOnly = $true; calls = [ordered]@{} }
 $failures = [System.Collections.Generic.List[string]]::new()
 function Invoke-Read([string]$Label, [string]$Operation, [hashtable]$Arguments) {
-    if ($Operation -notin @('station','robot_pose','reach','path_details','validate_targets','data_compare','io_read','collisions','simulation','geometry','raycast')) { throw 'Only read operations are permitted.' }
+    if ($Operation -notin @('station','robot_pose','reach','path_details','validate_targets','data_compare','io_read','collisions','simulation','geometry','raycast','configuration','io_project','simulation_setup','safemove','body_motion','smart_component','station_logic','body_edit')) { throw 'Only read operations are permitted.' }
+    if ($Operation -in @('body_motion','smart_component','station_logic') -and $Arguments.ContainsKey('action')) { throw 'Cell smoke uses only the default read actions.' }
+    if ($Operation -eq 'body_edit' -and $Arguments.action -ne 'state') { throw 'Only body state may be read.' }
+    if ($Operation -in @('configuration','io_project','simulation_setup','safemove') -and $Arguments.ContainsKey('action')) { throw 'Engineering smoke uses default read actions only.' }
     if ($Operation -eq 'validate_targets' -and $Arguments.checkCollisions -ne $false) { throw 'Collision pose probes are not permitted in this script.' }
     if ($Operation -eq 'collisions' -and $Arguments.Count -ne 0) { throw 'Only existing collision state may be read.' }
     if ($Operation -eq 'simulation' -and ($Arguments.action -ne 'state' -or $Arguments.Count -ne 1)) { throw 'Only simulation state may be read.' }
@@ -84,6 +90,29 @@ try {
     }
     $null = Invoke-Read 'collisions_state' 'collisions' @{}
     $null = Invoke-Read 'simulation_state' 'simulation' @{ action = 'state' }
+    if ($CheckCell) {
+        $null = Invoke-Read 'motion_status' 'body_motion' @{}
+        $null = Invoke-Read 'wiring' 'station_logic' @{limit = 1}
+        $sensor = Invoke-Read 'sensor_template' 'smart_component' @{template = 'LineSensor'}
+        if ($sensor -and 'SensedPart' -cnotin @($sensor.properties.name)) { $failures.Add('sensor_missing_part_output') }
+        $parts = Invoke-Read 'cell_parts' 'simulation_setup' @{section = 'parts'; limit = 1}
+        if ($parts -and $parts.items.Count -gt 0) {
+            $null = Invoke-Read 'part_state' 'body_edit' @{action = 'state'; object = $parts.items[0].id}
+        }
+    }
+    if ($CheckEngineering) {
+        $cfg = Invoke-Read 'configuration_domains' 'configuration' @{ robot = $robot; limit = 1 }
+        if ($cfg -and ($cfg.scope -ne 'station_owned_virtual_controller' -or $cfg.result.level -ne 'domains')) { $failures.Add('configuration_scope') }
+        $eio = Invoke-Read 'installed_io' 'io_project' @{ robot = $robot; limit = 1 }
+        if ($eio -and ($eio.source -ne 'installed_eio_configuration' -or $eio.result.level -ne 'types')) { $failures.Add('io_project_scope') }
+        $setup = Invoke-Read 'physics_overview' 'simulation_setup' @{}
+        if ($setup -and $null -eq $setup.physics.gravityMps2) { $failures.Add('missing_physics') }
+        $null = Invoke-Read 'physics_parts' 'simulation_setup' @{ section = 'parts'; limit = 1 }
+    }
+    if ($SafeMoveGeometryFile) {
+        $geometryFile = Invoke-Read 'safemove_geometry' 'safemove' @{ file = $SafeMoveGeometryFile; limit = 1 }
+        if ($geometryFile -and (-not $geometryFile.schemaChecked -or $geometryFile.activeConfigurationVerified)) { $failures.Add('safemove_provenance') }
+    }
     if ($CheckGeometry) {
         $inventory = Invoke-Read 'geometry_inventory' 'geometry' @{ limit = 1 }
         if ($null -ne $inventory -and $inventory.total -lt 1) { $failures.Add('robot_missing_from_geometry') }

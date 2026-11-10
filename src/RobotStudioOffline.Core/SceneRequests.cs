@@ -69,7 +69,7 @@ public static class SceneRequests
         return n;
     }
 
-    private static int Integer(JsonElement args, string key, int min, int max, int fallback)
+    internal static int Integer(JsonElement args, string key, int min, int max, int fallback)
     {
         if (!args.TryGetProperty(key, out var v)) return fallback;
         if (v.ValueKind != JsonValueKind.Number || !v.TryGetInt32(out var n) || n < min || n > max) throw Invalid("Invalid " + key + ".");

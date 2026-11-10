@@ -34,13 +34,21 @@ The add-in creates a local bearer token for the current Windows user. The wrappe
 | --- | --- |
 | Inspect a station and plan motion | `station`, `robot_pose`, `reach`, `path_details`, `validate_targets` |
 | Set up a scene | `geometry`, `geometry_create`, `geometry_import`, `raycast`, `collision_set` |
+| Build and test a conveyor pick | `body_edit`, `body_motion`, `smart_component`, `station_logic`, `collision_set_delete` |
 | Exercise and measure a virtual run | `jump`, `simulation`, `simulation_speed`, `collisions`, `tcp_record`, `run_review`, `run_view`, `screenshot` |
 | Inspect or edit station and controller data | `preview_targets`, `edit_targets`, `data_compare`, `data_sync`, `rapid_check`, `rapid_load`, `rapid_diff`, `rapid_sync_real` |
 | Read or simulate virtual I/O | `io_read`, `io_write`, `io_pulse` |
+| Browse and edit installed VC parameters and I/O setup | `configuration`, `io_project` |
+| Change station physics, conveyor speed or simulation participants | `simulation_setup` |
+| Review a SafeMove geometry export and draft a revised zone | `safemove` |
+
+The four engineering tools are available in a source build. For example, ask Claude to “list the parts with surface velocity enabled” or “show the zones in this SafeMove geometry export and save a copy with zone 1's ceiling at 1.8 m.” The [engineering reference](docs/engineering.md) lists supported edits and how to bring changes into the ABB engineering tools.
 
 Calls operate on local files, the station or its mapped virtual controller by default. To enable real-controller comparison or replacement, set `RS_BRIDGE_REAL_ADDRESS` to the intended controller’s IPv4 address in RobotStudio’s environment before launching RobotStudio. The add-in requires one matching existing connection. Each `rapid_diff` with `includeReal:true` or `rapid_sync_real` request requires explicit owner approval in RobotStudio. The dialog identifies the controller, task and module selection, and defaults to Cancel.
 
 For JSON arguments, units, supported robot configurations, reach failure reasons, and a complete recording example, see the [bridge reference](docs/bridge-reference.md). A recorded clearance covers the selected geometry at the acquired samples. To assess a carried item, include its attached CAD geometry.
+
+The [conveyor and gripper example](docs/conveyor.md) shows how to move a carrier, pick and release an item, wire a sensor to the virtual controller, and remove trial geometry. These tools are in the source build.
 
 ## Build from source
 
@@ -53,6 +61,8 @@ On the RobotStudio PC, install the **x64 .NET 10 SDK** and run the following in 
 For a custom installation path, use `.\build.ps1 -RobotStudioDir 'D:\ABB\RobotStudio 2026'`. The script compiles the solution, tests the bridge and MCP transport, checks the headless recorder, and validates the add-in manifest against ABB's installed schema. It saves the output to `artifacts\build.log`.
 
 For a source build, copy **all files** in `artifacts\addin` to the `OfflineStationBridge` installation folder above. Use `artifacts\mcp\RobotStudioOffline.Mcp.dll` as the wrapper path in the Claude registration command. To create the distributable ZIP and checksum, run `.\package-release.ps1`.
+
+If Claude currently holds the wrapper DLLs open, build a second copy with `.\build.ps1 -McpOutputDirectory artifacts\mcp-cell`. The add-in still goes in `artifacts\addin`. Once the sessions using the old wrapper have exited, copy all files from `artifacts\mcp-cell` into the registered wrapper directory and start a new Claude session.
 
 ## Reference
 

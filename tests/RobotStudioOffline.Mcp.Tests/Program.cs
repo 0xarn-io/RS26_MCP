@@ -35,7 +35,7 @@ try
     await Check("tool schemas expose all station and regression operations", () =>
     {
         var catalog = ToolCatalog.Create();
-        Assert(catalog.Count == 29, "Expected 29 tools.");
+        Assert(catalog.Count == 38, "Expected 38 tools.");
         Assert(catalog.Select(tool => tool!["name"]!.GetValue<string>()).Order().SequenceEqual(ToolCatalog.Names.Order()), "Tool dispatch names and catalog differ.");
         foreach (var tool in catalog)
         {
@@ -57,7 +57,7 @@ try
         await Send(process, "{\"jsonrpc\":\"2.0\",\"id\":\"list\",\"method\":\"tools/list\"}");
         var tools = await Read(process);
         Assert(tools["id"]!.GetValue<string>() == "list", "String id changed.");
-        Assert(tools["result"]!["tools"]!.AsArray().Count == 29, "Wrong tools count.");
+        Assert(tools["result"]!["tools"]!.AsArray().Count == ToolCatalog.Names.Length, "Wrong tools count.");
         await Send(process, "{\"jsonrpc\":\"2.0\",\"method\":\"notifications/unknown\"}");
         await Send(process, "{\"jsonrpc\":\"2.0\",\"id\":3,\"method\":\"ping\"}");
         Assert((await Read(process))["id"]!.GetValue<int>() == 3, "Notification produced a reply.");
@@ -320,10 +320,24 @@ try
         Assert(catalog["io_write"]["inputSchema"]!["required"]!.AsArray().Any(item => item!.GetValue<string>() == "value"), "Write value is optional.");
         return Task.CompletedTask;
     });
-    await Check("I/O MCP tools forward named reads, paging, writes and pulse requests unchanged", async () =>
+    await Check("I/O and engineering MCP tools forward named reads and writes unchanged", async () =>
     {
         (string Operation, string Arguments)[] examples =
         [
+            ("configuration", """{"domain":"MOC","limit":2}"""),
+            ("body_edit", """{"action":"state","object":"Box ID"}"""),
+            ("body_edit", """{"action":"attach","object":"Box ID","parent":"Gripper ID"}"""),
+            ("collision_set_delete", """{"set":"Trial clearance"}"""),
+            ("body_motion", """{"action":"start","part":"Carrier","deltaMm":[100,0,0],"durationMs":1000}"""),
+            ("smart_component", """{"action":"catalog"}"""),
+            ("station_logic", """{"action":"connect","kind":"property","source":{"component":"Entry eye","member":"SensedPart"},"target":{"component":"Pickup","member":"Child"}}"""),
+            ("configuration", """{"domain":"MOC","type":"ARM_LOAD","instance":"example","action":"set","attribute":"mass","expected":1,"value":2}"""),
+            ("io_project", "{}"),
+            ("io_project", """{"type":"EIO_SIGNAL","instance":"diTest","action":"set","attribute":"Label","expected":"","value":"Part present"}"""),
+            ("simulation_setup", """{"section":"participants"}"""),
+            ("simulation_setup", """{"action":"set_world","floorHeightMm":0}"""),
+            ("safemove", """{"file":"C:\\Exports\\geometry.xml"}"""),
+            ("safemove", """{"action":"edit_zone_copy","file":"C:\\Exports\\geometry.xml","outputName":"review.xml","driveModuleId":1,"zoneId":1,"topM":2}"""),
             ("io_read", "{}"),
             ("io_read", "{\"robot\":\"Robot1\",\"names\":[\"diTestPresent\",\"doTestValve\"]}"),
             ("io_read", "{\"offset\":5,\"limit\":500}"),

@@ -81,7 +81,12 @@ public static partial class ToolCatalog
         }, "name"), false),
         Tool("geometry_create", "Create a named solid in the open station. For a box supply size [x,y,z]. For a cylinder supply radius and height. For a sphere supply radius. All dimensions are positive millimetres. Position places the box's lower corner, cylinder's base center or sphere's center in station world coordinates. The cylinder extends along its local +Z axis.", GeometryCreate(), false),
         Tool("geometry_import", "Import a self-contained local CAD model into the open station as a named component. Use a fully qualified local Windows path to SAT (.sat), STEP (.step or .stp) or STL (.stl). Availability depends on the installed RobotStudio translator and license. Optional position and quaternion place the component origin in station world coordinates. Check the returned bounds in mm, especially for unitless STL files.", GeometryImport(), false),
-        .. RegressionTools()
+        .. RegressionTools(),
+        .. EngineeringTools(),
+        .. BodyTools(),
+        .. MotionTools(),
+        .. SmartTools(),
+        LogicTool()
     ];
 
     private static JsonObject Tool(string name, string description, JsonObject schema, bool readOnly) => new()

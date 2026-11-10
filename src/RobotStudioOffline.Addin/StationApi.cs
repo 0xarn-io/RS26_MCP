@@ -16,9 +16,24 @@ public sealed partial class StationApi
     {
         RequireMainThread();
         var request = RequestParser.Parse(operation, arguments);
+        if (request.Engineering is SafeMoveRequest safe)
+        {
+            // Read and validate exported files off the RobotStudio UI thread.
+            return await Task.Run(() => safe.Edit is { } edit
+                ? (object)SafeMoveInspection.EditZoneCopy(safe.File, edit.OutputName, edit.DriveModuleId,
+                    edit.ZoneId, edit.BottomM, edit.TopM, edit.PointsM)
+                : SafeMoveInspection.Read(safe.File, safe.Offset, safe.Limit));
+        }
         if (operation == "run_review") return await CaptureStore.ReviewAsync((RunReviewRequest)RunRequests.Parse(operation, arguments));
         var station = Station.ActiveStation ?? throw Error("no_station", "Open a station in RobotStudio first.");
         if (Station.IsLoading) throw Error("station_loading", "The station is still loading.");
+        if (request.BodyEdit is {} body) return BodyEdit(station, body);
+        if (request.Motion is {} motion) return BodyMotion(station, motion);
+        if (request.Smart is {} smart) return await SmartComponentsAsync(station, smart);
+        if (request.Logic is {} logic) return StationLogic(station, logic);
+        if (request.Engineering is IoProjectRequest ioProject) return IoProject(station, ioProject);
+        if (request.Engineering is ConfigurationRequest parameters) return Configuration(station, parameters);
+        if (request.Engineering is SimulationSetupRequest setup) return SimulationSetup(station, setup);
         if (RapidModuleRequests.Operations.Contains(operation)) return await ExecuteRapidModulesAsync(station, operation, arguments);
         if (SceneRequests.Operations.Contains(operation))
         {
@@ -336,7 +351,7 @@ public sealed partial class StationApi
     {
         var sets = station.CollisionSets.Cast<CollisionSet>().Select(set => new
         {
-            name = set.Name, active = set.Active,
+            id = set.UniqueId, name = set.Name, active = set.Active,
             state = set.GetCurrentState().ToString(), checkedNow = set.Active,
             nearMissDistanceMm = set.NearMissDistance * 1000.0,
             firstGroup = set.FirstGroup.Cast<ProjectObject>().Select(x => x.Name).ToArray(),
@@ -352,7 +367,7 @@ public sealed partial class StationApi
         };
     }
 
-    private static async Task<object> SimulationAsync(Station station, string action)
+    private async Task<object> SimulationAsync(Station station, string action)
     {
         var config = Simulator.ActiveConfiguration;
         if (action != "state")
@@ -374,7 +389,10 @@ public sealed partial class StationApi
                 if (Simulator.State == SimulationState.Paused) await Simulator.ResumeAsync();
                 else if (Simulator.State != SimulationState.Running) await Simulator.StartAsync();
                 break;
-            case "stop": await Simulator.StopAsync(); break;
+            case "stop":
+                await Simulator.StopAsync();
+                StopBodyMotionsForShutdown();
+                break;
             case "reset":
                 // Restore the owner's selected saved simulation state. Never restart RS or a VC.
                 var initial = config!.InitialState;
@@ -382,6 +400,7 @@ public sealed partial class StationApi
                 if (saved is null)
                     throw Error("simulation_initial_state", "The selected simulation configuration must name a saved initial state before reset.");
                 await Simulator.StopAsync();
+                StopBodyMotionsForShutdown();
                 EnsureCurrent(station);
                 if (!saved.CanRestore())
                     throw Error("simulation_initial_state", "Simulation stopped, but its selected initial state cannot currently be restored.");

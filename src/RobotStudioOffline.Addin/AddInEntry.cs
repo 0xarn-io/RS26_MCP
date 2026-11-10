@@ -117,6 +117,7 @@ public static class AddInEntry
         try
         {
             await current.StopAsync();
+            api?.StopBodyMotionsForShutdown();
             api?.StopRecordingForShutdown();
             if (!shuttingDown) Log("Offline Station Bridge stopped. RobotStudio and station simulation were not stopped.");
         }
@@ -137,6 +138,7 @@ public static class AddInEntry
     private static void Shutdown()
     {
         shuttingDown = true;
+        try { api?.StopBodyMotionsForShutdown(); } catch (Exception error) { Log(error.Message); }
         try { api?.StopRecordingForShutdown(); } catch (Exception error) { Log(error.Message); }
         try { server?.Dispose(); } // Never wait on an SDK continuation during host shutdown.
         catch (Exception) { /* Host shutdown must continue even if transport cleanup fails. */ }

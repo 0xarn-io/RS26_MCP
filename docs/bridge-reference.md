@@ -2,7 +2,7 @@
 
 ## HTTP and MCP contract
 
-Each of the 29 tools has a matching HTTP path. Send `POST http://127.0.0.1:18426/<name>` with `Authorization: Bearer <token>`, `Content-Type: application/json`, and a `Content-Length` body. Success is `{"ok":true,"data":{...}}` and failure is `{"ok":false,"error":{"code":"...","message":"..."}}`. MCP returns the same JSON in text content, setting `isError` for failures. Rendered views and screenshots use MCP image content. A valid reach query with `reachable:false` is a successful query.
+Each of the 38 tools has a matching HTTP path. Send `POST http://127.0.0.1:18426/<name>` with `Authorization: Bearer <token>`, `Content-Type: application/json`, and a `Content-Length` body. Success is `{"ok":true,"data":{...}}` and failure is `{"ok":false,"error":{"code":"...","message":"..."}}`. MCP returns the same JSON in text content, setting `isError` for failures. Rendered views and screenshots use MCP image content. A valid reach query with `reachable:false` is a successful query.
 
 | Endpoint/tool | Arguments | Result |
 | --- | --- | --- |
@@ -22,8 +22,17 @@ Each of the 29 tools has a matching HTTP path. Send `POST http://127.0.0.1:18426
 | `io_read` | `robot?`, optional `names`; otherwise `offset?`, `limit?` | Read selected signals or a page of the mapped VC's digital/analog/group I/O |
 | `io_write` | `robot?`, `name`, `value`, `simulateInput?` | Set one VC signal, returning its prior value and observed readback |
 | `io_pulse` | `robot?`, `name`, `durationMs?`, `simulateInput?` | Request a digital VC pulse, default 100 ms, bounded to 1–5000 ms |
+| `configuration` | `robot?`, `domain?`, `type?`, `instance?`, read page or explicit `set` | Browse the VC parameter database and change supported scalar attributes |
+| `io_project` | Same as `configuration` with EIO selected automatically | Inspect installed I/O types, instances and mappings, edit supported signal attributes |
+| `simulation_setup` | Read a `section`, or set world, part, simulation configuration or participant properties | Station settings and edit readback |
+| `safemove` | Local geometry XML `file`, optional `action:"edit_zone_copy"` and zone edits | Exported geometry or a new, schema-checked draft file |
 | `geometry_create` | `name`, `shape`, dimensions, optional `position` and `quaternion` | Add a box, cylinder or sphere at the station root and return its world bounds in mm |
 | `geometry_import` | `name`, `file`, optional `position` and `quaternion` | Import a local SAT, STEP or STL model into the open station and return its world bounds in mm |
+| `body_edit` | `action`, `object`; optional pose/frame for `move`, `parent` for `attach` or `release` | Read the pose and attachment, move or remove geometry, or transfer a workpiece to a gripper, carrier or station world |
+| `collision_set_delete` | `set` (ID or unique name) | Remove one collision set with simulation stopped |
+| `body_motion` | `action` (`start`, `status`, `stop`), `part`, `deltaMm`, `durationMs` for travel | Translate a part over simulated time and inspect progress |
+| `smart_component` | `action` (`catalog`, `list`, `inspect`, `create`, `configure`, `delete`) | Instantiate and configure installed ABB movers, sensors and handling components |
+| `station_logic` | List wiring, `connect` or `disconnect` a `source` and `target`, or `set_input` / `pulse` a digital component input | Wire signals and object properties, including signals on the selected station robot’s mapped virtual controller |
 | `geometry` | Optional `match`, `offset`, `limit` | Components and bodies, IDs, parent and available world bounds |
 | `collision_set` | `name`, `first`, `second`, optional `nearMissMm` | Create an active set from two groups of components |
 | `raycast` | `tool`, `origin`, `direction`, `maxDistance`, optional `robot`, `parts`, `exclude` | Nearest graphical part hit on a tool-frame ray, distance in mm and hit point in world |

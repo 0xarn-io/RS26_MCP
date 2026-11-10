@@ -31,6 +31,12 @@ public static class RequestParser
         if (arguments.ValueKind != JsonValueKind.Object)
             throw Invalid("Arguments must be a JSON object.");
         RejectControllerAccess(arguments);
+        if (BodyRequests.Operations.Contains(operation)) return new() { Operation = operation, BodyEdit = BodyRequests.Parse(operation, arguments) };
+        if (MotionRequests.Operations.Contains(operation)) return new() { Operation = operation, Motion = MotionRequests.Parse(operation, arguments) };
+        if (SmartRequests.Operations.Contains(operation)) return new() { Operation = operation, Smart = SmartRequests.Parse(operation, arguments) };
+        if (operation == "station_logic") return new() { Operation = operation, Logic = LogicRequests.Parse(arguments) };
+        if (EngineeringRequests.Operations.Contains(operation))
+            return new() { Operation = operation, Engineering = EngineeringRequests.Parse(operation, arguments) };
         if (SceneRequests.Operations.Contains(operation)) { _ = SceneRequests.Parse(operation, arguments); return new() { Operation = operation }; }
         if (RapidModuleRequests.Operations.Contains(operation)) { _ = RapidModuleRequests.Parse(operation, arguments); return new() { Operation = operation }; }
         if (RunRequests.Operations.Contains(operation))

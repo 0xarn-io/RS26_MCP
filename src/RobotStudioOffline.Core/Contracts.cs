@@ -13,6 +13,16 @@ public sealed record BridgeRequest
 {
     [JsonIgnore]
     public string Operation { get; init; } = string.Empty;
+    [JsonIgnore]
+    public EngineeringRequest? Engineering { get; init; }
+    [JsonIgnore]
+    public BodyRequest? BodyEdit { get; init; }
+    [JsonIgnore]
+    public BodyMotionRequest? Motion { get; init; }
+    [JsonIgnore]
+    public SmartRequest? Smart { get; init; }
+    [JsonIgnore]
+    public LogicRequest? Logic { get; init; }
     public string? Robot { get; init; }
     public string? Tool { get; init; }
     public string? WorkObject { get; init; }

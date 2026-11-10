@@ -11,7 +11,7 @@ Verified installed assembly: `C:\Program Files (x86)\ABB\RobotStudio 2026\Bin\AB
 
 The panel displays listener/stopping/error state, loopback endpoint, current station, lifetime counts, and bounded recent request metadata. It makes no claim that Claude is connected: HTTP requests are independent. Pending includes queued and executing requests. Arguments, response bodies, auth tokens and exception messages from station requests are not retained or displayed by activity history. Clearing history preserves pending entries and lifetime counts.
 
-Start/Stop control only the bridge listener. Stop does not stop station simulation or an already running operation. Start is disabled while stopping or while pending work remains. The Tools tab lists the 29 MCP operations.
+Stop drains in-flight requests, ends bridge TCP recording and restores parts still controlled by `body_motion`. Station simulation and ABB Smart Components continue running. Start is disabled while stopping or while requests remain pending. The Tools tab lists the available MCP operations.
 
 MCP setup chooses `RobotStudioOffline.Mcp.dll` through a file picker and copies a PowerShell registration command only after a button click. Its path is single-quoted and embedded single quotes are doubled; it is never executed by the panel. No repository path is hardcoded and no token is copied.
 

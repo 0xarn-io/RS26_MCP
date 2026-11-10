@@ -175,6 +175,12 @@ internal static partial class Program
         AddRunCaptureTests(tests);
         AddRapidModuleTests(tests);
         AddSceneTests(tests);
+        AddEngineeringTests(tests);
+        AddBodyTests(tests);
+        AddMotionTests(tests);
+        AddSmartTests(tests);
+        AddLogicTests(tests);
+        AddSafeMoveInspectionTests(tests);
         AddBridgeActivityTests(tests);
         AddNamedTargetSelectorTests(tests);
         AddTransportTests(tests);

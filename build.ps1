@@ -1,7 +1,8 @@
 [CmdletBinding()]
 param(
     [string]$RobotStudioDir = 'C:\Program Files (x86)\ABB\RobotStudio 2026',
-    [ValidateSet('Debug', 'Release')][string]$Configuration = 'Release'
+    [ValidateSet('Debug', 'Release')][string]$Configuration = 'Release',
+    [string]$McpOutputDirectory = 'artifacts\mcp'
 )
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
@@ -46,11 +47,11 @@ try {
     'PASS: .rsaddin validated against installed ABB schema.' | Tee-Object -FilePath $log -Append
 
     Invoke-Dotnet @('publish', 'src\RobotStudioOffline.Addin\RobotStudioOffline.Addin.csproj', '-c', $Configuration, '--no-build', '-o', 'artifacts\addin', "-p:RobotStudioDir=$RobotStudioDir")
-    Invoke-Dotnet @('publish', 'src\RobotStudioOffline.Mcp\RobotStudioOffline.Mcp.csproj', '-c', $Configuration, '--no-build', '-o', 'artifacts\mcp')
+    Invoke-Dotnet @('publish', 'src\RobotStudioOffline.Mcp\RobotStudioOffline.Mcp.csproj', '-c', $Configuration, '--no-build', '-o', $McpOutputDirectory)
     Invoke-Dotnet @('publish', 'src\RobotStudioOffline.HeadlessRecorder\RobotStudioOffline.HeadlessRecorder.csproj', '-c', $Configuration, '--no-build', '-o', 'artifacts\headless-recorder', "-p:RobotStudioDir=$RobotStudioDir")
     $vendorCopies = Get-ChildItem -LiteralPath 'artifacts\addin','artifacts\headless-recorder' -Filter 'ABB.*.dll'
     if ($vendorCopies) { throw 'Vendor assemblies must not be redistributed with the add-in.' }
-    'BUILD AND OFFLINE TESTS PASSED. Artifacts: artifacts\addin, artifacts\mcp, artifacts\headless-recorder.' | Tee-Object -FilePath $log -Append
+    "BUILD AND OFFLINE TESTS PASSED. Artifacts: artifacts\addin, $McpOutputDirectory, artifacts\headless-recorder." | Tee-Object -FilePath $log -Append
 } finally {
     Pop-Location
 }
